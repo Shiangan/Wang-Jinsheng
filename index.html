@@ -89,6 +89,9 @@
         }
         .section-title::after { content: ""; display: block; width: 30px; height: 1.5px; background: var(--gold-light); margin: 15px auto 0; opacity: 0.5; }
         
+        /* 前文圖片樣式修正 */
+        .img-inner { width: 100%; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: block; margin: 0 auto 30px; }
+
         .obituary-wrap { padding: 8px; background: var(--bg-deep); border-radius: 2px; box-shadow: inset 0 0 15px rgba(0,0,0,0.05); }
         .obituary-img { width: 100%; display: block; cursor: zoom-in; }
 
@@ -178,6 +181,24 @@
 
     <main>
         <section class="reveal">
+            <img src="image/IMG_8270.jpeg" class="img-inner" onclick="zoom(this.src)">
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 18px; font-weight: 600; letter-spacing: 4px; margin-bottom: 25px; color: var(--gold-dark);">德範長存，永誌一心</p>
+                <p style="font-size: clamp(15px, 4.2vw, 17px); color: var(--sub-ink); line-height: 2.8; letter-spacing: 1.8px; padding: 0 15px;">
+                    我們最敬愛的 <span class="u-block" style="font-weight: 700; color: var(--ink); font-size: 1.1em;">王金生 先生</span><br>
+                    於 <span class="u-block" style="color: var(--ink); font-weight: 600;">2026 年 01 月</span>，<br>
+                    在家人們的陪伴與思念中，<br>
+                    <span class="u-block">圓滿塵世旅程，安詳化作星辰。</span><br>
+                    <span class="u-block">留下的溫暖與教誨，將永遠照亮我們。</span><br><br>
+                    謹擇於<br>
+                    <span class="u-block" style="color: var(--ink); font-weight: 600;">2026 年 02 月 01 日 (星期日)</span>，<br>
+                    於 <span class="u-block" style="color: var(--ink); font-weight: 600;">台北市立第二殯儀館 ［ 至仁四廳 ］</span><br>
+                    舉辦追思告別奠禮
+                </p>
+            </div>
+        </section>
+
+        <section class="reveal">
             <span class="section-title">訃告正本公告</span>
             <div class="obituary-wrap">
                 <img src="image/IMG_9971.jpeg" class="obituary-img" onclick="zoom(this.src)">
@@ -188,7 +209,7 @@
         <section class="reveal">
             <span class="section-title">追思奠禮 ‧ 儀程</span>
             <div class="date-hero">02.01</div>
-            <div class="date-sub">西元 2026 年 ‧ 國曆二月一日 (星期六)</div>
+            <div class="date-sub">西元 2026 年 ‧ 國曆二月一日 (星期日)</div>
             
             <div class="time-timeline">
                 <div class="time-box"><span class="time-tag">家奠禮</span><span class="time-main">07:50</span></div>
@@ -200,7 +221,7 @@
                 <div class="info-value">台北市立第二殯儀館</div>
                 <div class="info-value">景行樓 3F [ 至仁四廳 ]</div>
                 <div class="info-sub">臺北市大安區辛亥路三段330號</div>
-                <a href="https://maps.app.goo.gl/tS3pD8XvW53Hn8K88" target="_blank" class="btn-action btn-outline">📍 開啟地圖導航</a>
+                <a href="https://maps.google.com/?q=台北市立第二殯儀館" target="_blank" class="btn-action btn-outline">📍 開啟地圖導航</a>
             </div>
             <a href="javascript:void(0)" class="btn-action btn-solid" onclick="addCal()">📅 加入手機行事曆</a>
         </section>
@@ -212,7 +233,7 @@
                 <div class="info-value">板橋殯儀館 牌位區 [ No.83 ] </div>
                 <div class="info-sub">新北市板橋區中正路560號</div>
                 <div style="font-size: 13px; font-weight: 700; color: var(--gold-dark); margin-top: 18px; border-top: 1px solid rgba(142, 115, 91, 0.1); padding-top: 18px;">※ 奠禮前親友上香致意請至此處</div>
-                <a href="https://maps.app.goo.gl/83vXF8J6kY9V7j7L7" target="_blank" class="btn-action btn-outline">📍 導航至安靈處</a>
+                <a href="https://maps.google.com/?q=板橋殯儀館" target="_blank" class="btn-action btn-outline">📍 導航至安靈處</a>
             </div>
         </section>
 
@@ -292,10 +313,10 @@
     const lb = document.getElementById('lightbox');
     const lbi = document.getElementById('lbi');
 
-    // 分享用完整文字變數
+    // 分享用完整文字變數 (已更新日期)
     const FULL_INFO = `【追思告別】王金生 先生
 
-🕯️ 奠禮日期：西元 2026 年 02 月 01 日 (日)
+🕯️ 奠禮日期：西元 2026 年 02 月 01 日 (星期日)
 🕯️ 家奠時間：07:50
 🕯️ 公奠時間：08:30
 📍 奠禮地點：台北市立第二殯儀館 [景行樓 3F 至仁四廳]
@@ -348,7 +369,6 @@ https://24hour.xn--kpry57d/Wang-Jinsheng`;
     function zoom(src) { lbi.src = src; lb.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
     function closeLightbox() { lb.style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-    // 複製資訊 (帶入完整文字)
     function copyText() {
         const t = document.createElement("textarea"); 
         t.value = FULL_INFO;
@@ -358,7 +378,6 @@ https://24hour.xn--kpry57d/Wang-Jinsheng`;
         alert("完整奠禮與安靈資訊已複製，可直接貼上分享親友。");
     }
 
-    // LINE分享 (帶入完整文字)
     function shareLine() { 
         window.location.href = `https://line.me/R/msg/text/?${encodeURIComponent(FULL_INFO)}`; 
     }
