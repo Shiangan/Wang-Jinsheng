@@ -16,102 +16,79 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;900&display=swap" rel="stylesheet">
     
     <style>
-        @font-face {
-            font-family: 'ZF-Font';
-            src: url('Zf-Font.ttf') format('truetype');
-            font-display: swap;
-        }
-
-        :root {
-            --paper: #f9f7f2;
-            --ink: #1a1a1a;
-            --gold: #b4977a;
-            --sub-ink: #555555;
-            --max-w: 480px;
-        }
-
-        * { 
-            box-sizing: border-box; 
-            -webkit-font-smoothing: antialiased; 
-            margin: 0; padding: 0; 
-            -webkit-text-size-adjust: 100%;
-        }
-
-        html, body { 
-            width: 100%; 
-            max-width: 100vw; 
-            overflow-x: hidden; 
-            background-color: var(--paper); 
-            color: var(--ink); 
-            font-family: 'Noto Serif TC', serif; 
-            line-height: 1.8;
-            touch-action: pan-y;
-            word-break: keep-all;
-        }
-
-        .u-block { display: inline-block; white-space: nowrap; vertical-align: bottom; }
-        .app-wrapper { width: 100%; max-width: var(--max-w); margin: 0 auto; position: relative; background-color: var(--paper); min-height: 100vh; }
+        @font-face { font-family: 'ZF-Font'; src: url('Zf-Font.ttf') format('truetype'); font-display: swap; }
+        :root { --paper: #f9f7f2; --ink: #1a1a1a; --gold: #b4977a; --sub-ink: #555555; --max-w: 480px; }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; }
+        html, body { width: 100%; overflow-x: hidden; background-color: var(--paper); color: var(--ink); font-family: 'Noto Serif TC', serif; line-height: 1.8; word-break: keep-all; }
+        
+        .u-block { display: inline-block; white-space: nowrap; }
+        .app-wrapper { width: 100%; max-width: var(--max-w); margin: 0 auto; position: relative; background: var(--paper); min-height: 100vh; }
         .bg-watermark { position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%); font-size: 70px; font-weight: 300; color: rgba(180, 151, 122, 0.04); letter-spacing: 15px; z-index: 0; pointer-events: none; }
 
+        /* Header */
         .header-top { text-align: center; padding: 45px 20px 20px; }
         .top-logo { width: 110px; opacity: 0.8; }
         .top-action-bar { display: flex; justify-content: center; gap: 12px; margin-top: 15px; }
         .top-btn { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid rgba(180, 151, 122, 0.3); background: #fff; color: var(--sub-ink); }
         .top-btn img { width: 16px; height: 16px; }
 
-        header { padding: 20px 0; text-align: center; }
+        header { text-align: center; padding: 20px 0; }
         .name-wrapper { font-size: clamp(42px, 11vw, 52px); font-weight: 900; letter-spacing: 0.25em; margin: 15px 0; }
 
-        section { padding: 65px 22px; width: 100%; position: relative; z-index: 1; opacity: 0; transform: translateY(20px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        /* Sections */
+        section { padding: 60px 22px; position: relative; z-index: 1; opacity: 0; transform: translateY(20px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
         section.visible { opacity: 1; transform: translateY(0); }
         .section-title { font-size: 15px; letter-spacing: 8px; color: var(--gold); font-weight: 700; margin-bottom: 35px; display: block; text-align: center; }
-        .img-inner { display: block; max-width: 85%; margin: 0 auto; height: auto; cursor: pointer; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-
-        /* 交通 8 張圖片格狀佈局 */
-        .traffic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
-        .traffic-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         
+        .img-inner { display: block; max-width: 85%; margin: 0 auto; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); cursor: pointer; }
+
+        /* Time & Cards */
         .date-hero { font-size: clamp(60px, 15vw, 80px); font-weight: 900; line-height: 1; text-align: center; color: var(--ink); }
-        .date-sub { text-align: center; font-size: 14px; letter-spacing: 2px; color: var(--sub-ink); margin-top: 5px; }
+        .date-sub { text-align: center; font-size: 14px; letter-spacing: 2px; color: var(--sub-ink); }
         .time-timeline { margin-top: 35px; padding-top: 25px; border-top: 1px dashed rgba(180, 151, 122, 0.2); display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .time-box { display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .time-tag { font-size: 13px; color: var(--sub-ink); letter-spacing: 3px; font-weight: 600; text-align: right; width: 60px; }
+        .time-box { display: flex; align-items: center; gap: 15px; }
+        .time-tag { font-size: 13px; color: var(--sub-ink); width: 60px; text-align: right; font-weight: 600; }
         .time-main { font-size: 32px; font-weight: 700; color: var(--gold); border-left: 2px solid var(--gold); padding-left: 15px; min-width: 120px; line-height: 1; }
 
-        .notice-card { background: rgba(180, 151, 122, 0.05); border: 1px solid rgba(180, 151, 122, 0.15); border-radius: 8px; padding: 25px 20px; margin-top: 30px; }
-        .notice-item { font-size: 13px; color: var(--sub-ink); margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.6; text-align: justify; }
-        .notice-item::before { content: "‧"; color: var(--gold); font-weight: 900; margin-right: 8px; }
+        .info-card { border-radius: 8px; padding: 25px; margin-bottom: 25px; }
+        .info-row { margin-bottom: 5px; }
+        .info-label { font-size: 13px; color: var(--gold); font-weight: 700; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+        .info-value { font-size: 20px; font-weight: 700; color: var(--ink); }
+        .info-sub { font-size: 14px; color: var(--sub-ink); }
 
-        .flower-grid { display: none; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 40px; padding: 0 5px; }
-        .flower-item { text-align: center; background: #fff; padding: 10px; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        .flower-item img { width: 100%; border-radius: 2px; margin-bottom: 8px; }
-        .flower-name { font-size: 12px; font-weight: 600; }
-        .flower-price { font-size: 11px; color: var(--gold); font-weight: 700; display: block; margin-top: 3px; }
+        .btn-action { display: block; width: 100%; padding: 18px; border: 1px solid var(--gold); color: var(--gold); text-align: center; text-decoration: none; font-size: 13px; letter-spacing: 4px; font-weight: 700; border-radius: 4px; transition: 0.3s; }
 
-        .calligraphy-area { padding: 100px 10px 150px; width: 100%; display: flex; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
-        .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; align-items: flex-start; width: 95%; max-width: 420px; height: 620px; margin: 0 auto; }
+        /* Tool Drawer */
+        .tool-drawer { margin-bottom: 20px; border: 1px solid rgba(180, 151, 122, 0.2); border-radius: 8px; overflow: hidden; background: #fff; }
+        .drawer-btn { width: 100%; padding: 20px; background: none; border: none; text-align: left; font-size: 15px; font-weight: 600; color: var(--ink); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .drawer-content { display: none; padding: 15px; background: #fdfdfd; border-top: 1px solid #eee; }
+        .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .grid-item { text-align: center; }
+        .grid-item img { width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .grid-item p { font-size: 12px; margin-top: 5px; color: var(--sub-ink); }
+
+        /* Calligraphy */
+        .calligraphy-area { padding: 100px 10px 150px; display: flex; justify-content: center; position: relative; z-index: 2; }
+        .ink-wrap { display: flex; flex-direction: row-reverse; justify-content: center; width: 95%; max-width: 420px; height: 620px; }
         .ink-line { writing-mode: vertical-rl; font-family: 'ZF-Font', serif; font-size: 22px; letter-spacing: 6px; line-height: 2.1; opacity: 0; filter: blur(12px); white-space: nowrap; margin: 0 6px; }
-        .ink-last-line { margin-top: 160px !important; margin-right: 20px !important; color: var(--ink); font-size: 20px !important; }
         .ink-anim { animation: inkFadeIn 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        @keyframes inkFadeIn { 0% { opacity: 0; filter: blur(12px); transform: translateY(-10px); } 100% { opacity: 1; filter: blur(0); transform: translateY(0); } }
+        @keyframes inkFadeIn { to { opacity: 1; filter: blur(0); transform: translateY(0); } }
 
-        .contact-box { background: rgba(180, 151, 122, 0.06); padding: 30px 20px; border-radius: 12px; margin: 0 22px 15px; border: 1px solid rgba(180, 151, 122, 0.1); }
-        .contact-btns { display: flex; gap: 12px; margin-top: 15px; }
-        .btn-call { flex: 1; background: var(--gold); color: #fff !important; text-decoration: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; }
-        .btn-line { flex: 1; background: #06C755; color: #fff !important; text-decoration: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; }
-        .btn-action { display: block; width: 100%; padding: 18px; border: 1px solid var(--gold); color: var(--gold); text-align: center; text-decoration: none; font-size: 13px; letter-spacing: 4px; font-weight: 700; margin-top: 30px; }
-        
+        /* Floating Nav & Footer */
         .float-nav { position: fixed; bottom: 35px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; }
-        .float-nav img { width: 56px; height: auto; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
-        
-        #lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0, 0, 0, 0.95); display:none; justify-content:center; align-items:center; z-index:10000; overflow: auto; }
-        #lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; pointer-events: auto; }
-        .lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 35px; font-weight: bold; cursor: pointer; }
-        
-        footer { padding: 20px 25px 120px; width: 100%; text-align: center; font-size: 21px; font-weight: 700; letter-spacing: 8px; color: var(--ink); }
+        .float-nav img { width: 56px; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
+        #lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center; z-index:10000; }
+        #lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; }
+        footer { padding: 40px 25px 120px; text-align: center; font-size: 21px; font-weight: 700; letter-spacing: 8px; color: var(--ink); }
+
+        /* Contact Box */
+        .contact-box { background: rgba(180, 151, 122, 0.06); padding: 30px 20px; border-radius: 12px; margin: 0 22px 15px; border: 1px solid rgba(180, 151, 122, 0.1); text-align: center; }
+        .contact-btns { display: flex; gap: 12px; margin-top: 15px; }
+        .btn-call { flex: 1; background: var(--gold); color: #fff; text-decoration: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+        .btn-line { flex: 1; background: #06C755; color: #fff; text-decoration: none; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; }
     </style>
 </head>
-<body oncontextmenu="return false"> 
+<body oncontextmenu="return false">
     <audio id="bgm" loop><source src="Misson Part 1.mp3" type="audio/mp3"></audio>
 
 <div class="app-wrapper">
@@ -139,12 +116,10 @@
             <img src="image/IMG_9949.jpeg" class="img-inner" onclick="zoom(this.src)">
             <div style="text-align: center; margin-top: 50px;">
                 <p style="font-size: 18px; font-weight: 600; letter-spacing: 4px; margin-bottom: 25px; color: var(--gold);">德範長存，永誌一心</p>
-                <p style="font-size: clamp(15px, 4.2vw, 17px); color: var(--sub-ink); line-height: 2.8; letter-spacing: 1.8px; padding: 0 15px;">
-                    我們最敬愛的 <span class="u-block" style="font-weight: 700; color: var(--ink); font-size: 1.1em;">王金生 先生</span><br>
-                    於 <span class="u-block" style="color: var(--ink); font-weight: 600;">115 年 01 月 12 日 (卯時)</span>，<br>
-                    在家人們的陪伴與思念中，<br>
-                    <span class="u-block">圓滿塵世旅程，安詳化作星辰。</span><br>
-                    <span class="u-block">留下的溫暖與教誨，將永遠照亮我們。</span><br><br>
+                <p style="font-size: 16px; color: var(--sub-ink); line-height: 2.8; letter-spacing: 1.8px; padding: 0 10px;">
+                    我們最敬愛的 <span class="u-block" style="font-weight: 700; color: var(--ink);">王金生 先生</span><br>
+                    於 <span class="u-block" style="color: var(--ink); font-weight: 600;">115 年 01 月 12 日</span> 圓滿塵世旅程<br>
+                    留下的溫暖與教誨，將永遠照亮我們。<br><br>
                     謹擇於<br>
                     <span class="u-block" style="color: var(--ink); font-weight: 600;">115 年 02 月 01 日 (星期六)</span><br>
                     於 <span class="u-block" style="color: var(--ink); font-weight: 600;">台北市第二殯儀館 ［ 至仁四廳 ］</span><br>
@@ -156,70 +131,72 @@
         <section class="reveal">
             <span class="section-title">追思奠禮 ‧ 儀程詳情</span>
             <div class="date-hero">115.02.01</div>
-            <div class="date-sub">西元 2026 年 ‧ 國曆二月一日</div>
-            <div class="date-sub" style="font-size: 11px; opacity: 0.8;">( 農曆 乙巳年 十二月十四日 ) 星期六</div>
-            
-            <div style="margin-top:45px; text-align: center;">
-                <div style="margin-bottom:25px; padding: 18px; background: rgba(180, 151, 122, 0.04); border: 1px solid rgba(180, 151, 122, 0.15); border-radius: 6px;">
-                    <span style="font-size:11px; color:var(--gold); font-weight:700; letter-spacing: 3px; display: block; margin-bottom: 5px;">安靈地點 (牌位區)</span>
-                    <div class="u-block" style="font-size: 18px; font-weight: 600; color: var(--ink);">板橋殯儀館牌位區 [ 83 ] 號</div>
-                </div>
-                <div style="margin-bottom:35px;">
-                    <span style="font-size:11px; color:var(--gold); font-weight:700; letter-spacing: 3px; display: block; margin-bottom: 5px;">追思奠禮會場</span>
-                    <div class="u-block" style="font-size: 23px; font-weight: 600; color: var(--ink);">台北市第二殯儀館 [ 至仁四廳 ]</div>
-                </div>
-            </div>
+            <div class="date-sub">西元 2026 年 ‧ 國曆二月一日 (星期六)</div>
             
             <div class="time-timeline">
                 <div class="time-box"><span class="time-tag">家奠禮</span><span class="time-main">07:50</span></div>
                 <div class="time-box"><span class="time-tag">公奠禮</span><span class="time-main">08:30</span></div>
             </div>
 
-            <div class="notice-card">
-                <div class="notice-item">請著整齊、樸素衣物出席，以表尊敬與追思之意。</div>
-                <div class="notice-item">園區內請勿說「再見」，以「平安」代替即可。</div>
-                <div class="notice-item">奠禮會場備有淨水，若有需要可以自行取用。</div>
-                <div class="notice-item">若因宗教信仰不方便持香，與工作人員示意即可。</div>
+            <div class="info-card" style="border-left: 4px solid var(--ink); background: rgba(0,0,0,0.02);">
+                <div class="info-row">
+                    <span class="info-label">告別式會場 (出殯地點)</span>
+                    <div class="info-value">台北市立第二殯儀館</div>
+                    <div class="info-value">景行樓 3F [ 至仁四廳 ]</div>
+                    <div class="info-sub">臺北市大安區辛亥路三段330號</div>
+                </div>
+                <a href="https://maps.app.goo.gl/zLJLqxEKuRuHKcws9?g_st=ic" target="_blank" class="btn-action" style="margin-top: 20px; border-color: var(--ink); color: var(--ink); background: #fff;">📍 導航至告別式會場</a>
             </div>
-            <a href="javascript:void(0)" class="btn-action" onclick="addCal()">加入手機行事曆提醒</a>
+            <a href="javascript:void(0)" class="btn-action" onclick="addCal()" style="background: var(--gold); color: #fff; border: none;">📅 加入手機行事曆提醒</a>
         </section>
 
         <section class="reveal">
-            <span class="section-title">會場交通指引</span>
-            <div class="traffic-grid">
-                <img src="image/trans1.jpg" onclick="zoom(this.src)">
-                <img src="image/trans2.jpg" onclick="zoom(this.src)">
-                <img src="image/trans3.jpg" onclick="zoom(this.src)">
-                <img src="image/trans4.jpg" onclick="zoom(this.src)">
-                <img src="image/trans5.jpg" onclick="zoom(this.src)">
-                <img src="image/trans6.jpg" onclick="zoom(this.src)">
-                <img src="image/trans7.jpg" onclick="zoom(this.src)">
-                <img src="image/trans8.jpg" onclick="zoom(this.src)">
+            <span class="section-title">靈堂安靈地點</span>
+            <div class="info-card" style="border-left: 4px solid #8e857d; background: rgba(142, 133, 125, 0.05);">
+                <div class="info-row">
+                    <span class="info-label">安靈會館 (平日弔唁)</span>
+                    <div class="info-value">板橋殯儀館 牌位區 [ No.83 ] </div>
+                    <div class="info-sub">新北市板橋區中正路560號</div>
+                    <div class="info-sub" style="color: #b44; font-weight: 600; margin-top: 8px;">※ 奠禮前親友致意請至此處</div>
+                </div>
+                <a href="https://maps.app.goo.gl/pVXmtXqSxwDaxbgW8?g_st=ic" target="_blank" class="btn-action" style="margin-top: 20px; border-color: #8e857d; color: #8e857d;">📍 導航至安靈會館</a>
             </div>
-            <a href="https://maps.app.goo.gl/3yR6j5R8Z7H2" target="_blank" class="btn-action" style="border-color:#eee; color:#888; margin-top:20px;">📍 開啟 Google 地圖導航</a>
         </section>
 
         <section class="reveal">
-            <span class="section-title">電子訃聞 ‧ 詳情參閱</span>
-            <img src="image/IMG_9250.jpeg" class="img-inner" style="max-width: 70%;" onclick="zoom(this.src)">
-            <p style="text-align:center; font-size:12px; color:var(--gold); margin-top:20px;">( 點擊圖片可放大查看 )</p>
-        </section>
-
-        <section class="reveal" style="text-align: center;">
-            <span class="section-title">致贈花禮</span>
-            <div style="display: flex; justify-content: center; gap: 60px; margin-bottom: 10px;">
-                <div onclick="toggleF()" style="cursor:pointer;"><div style="font-size: 20px; font-weight: 600;">查看花籃樣式+</div></div>
-                <div onclick="location.href='https://line.me/ti/p/nZJmE8-b6X'" style="cursor:pointer; color: #00c300;"><div style="font-size: 20px; font-weight: 600;">LINE 訂購</div></div>
+            <span class="section-title">致意資訊導引</span>
+            
+            <div class="tool-drawer">
+                <button class="drawer-btn" onclick="toggleD(this, 'flower')">致意花禮樣式參考 (共8款) <span>+</span></button>
+                <div id="flower" class="drawer-content">
+                    <div class="img-grid">
+                        <div class="grid-item" onclick="zoom('image/花籃A款.JPG')"><img src="image/花籃A款.JPG"><p>樣式 A $2,500</p></div>
+                        <div class="grid-item" onclick="zoom('image/花籃B款.JPG')"><img src="image/花籃B款.JPG"><p>樣式 B $3,000</p></div>
+                        <div class="grid-item" onclick="zoom('image/花籃C款.JPG')"><img src="image/花籃C款.JPG"><p>樣式 C $3,500</p></div>
+                        <div class="grid-item" onclick="zoom('image/花籃D款.JPG')"><img src="image/花籃D款.JPG"><p>樣式 D $4,500</p></div>
+                        <div class="grid-item" onclick="zoom('image/花籃E款.JPG')"><img src="image/花籃E款.JPG"><p>樣式 E $5,000</p></div>
+                        <div class="grid-item" onclick="zoom('image/花籃F款.JPG')"><img src="image/花籃F款.JPG"><p>樣式 F $5,500</p></div>
+                        <div class="grid-item" onclick="zoom('image/花籃G款.JPG')"><img src="image/花籃G款.JPG"><p>樣式 G $6,000</p></div>
+                        <div class="grid-item" onclick="zoom('image/花籃H款.JPG')"><img src="image/花籃H款.JPG"><p>樣式 H $6,500</p></div>
+                    </div>
+                    <a href="https://line.me/ti/p/nZJmE8-b6X" style="background:#06C755; color:#fff; text-decoration:none; padding:18px; border-radius:8px; display:block; text-align:center; font-size:14px; font-weight:700; margin-top: 20px;">透過 LINE 諮詢訂購</a>
+                </div>
             </div>
-            <div id="flowerG" class="flower-grid">
-                <div class="flower-item"><img src="image/花籃A款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 A 款</span><span class="flower-price">$2,500 / 對</span></div>
-                <div class="flower-item"><img src="image/花籃B款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 B 款</span><span class="flower-price">$3,000 / 對</span></div>
-                <div class="flower-item"><img src="image/花籃C款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 C 款</span><span class="flower-price">$3,500 / 對</span></div>
-                <div class="flower-item"><img src="image/花籃D款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 D 款</span><span class="flower-price">$4,500 / 對</span></div>
-                <div class="flower-item"><img src="image/花籃E款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 E 款</span><span class="flower-price">$5,000 / 對</span></div>
-                <div class="flower-item"><img src="image/花籃F款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 F 款</span><span class="flower-price">$5,500 / 對</span></div>
-                <div class="flower-item"><img src="image/花籃G款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 G 款</span><span class="flower-price">$6,000 / 對</span></div>
-                <div class="flower-item"><img src="image/花籃H款.JPG" onclick="zoom(this.src)"><span class="flower-name">花籃 H 款</span><span class="flower-price">$6,500 / 對</span></div>
+
+            <div class="tool-drawer">
+                <button class="drawer-btn" onclick="toggleD(this, 'map_ref')">會場交通指引圖 (共8張) <span>+</span></button>
+                <div id="map_ref" class="drawer-content">
+                    <div class="img-grid">
+                        <div class="grid-item" onclick="zoom('image/交通00001.GIF')"><img src="image/交通00001.GIF"></div>
+                        <div class="grid-item" onclick="zoom('image/交通00002.GIF')"><img src="image/交通00002.GIF"></div>
+                        <div class="grid-item" onclick="zoom('image/交通00003.GIF')"><img src="image/交通00003.GIF"></div>
+                        <div class="grid-item" onclick="zoom('image/交通00004.GIF')"><img src="image/交通00004.GIF"></div>
+                        <div class="grid-item" onclick="zoom('image/交通00006.JPG')"><img src="image/交通00006.JPG"></div>
+                        <div class="grid-item" onclick="zoom('image/交通00007.JPG')"><img src="image/交通00007.JPG"></div>
+                        <div class="grid-item" onclick="zoom('image/交通00008.JPG')"><img src="image/交通00008.JPG"></div>
+                        <div class="grid-item" onclick="zoom('image/交通00009.JPG')"><img src="image/交通00009.JPG"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -231,32 +208,26 @@
                 <div class="ink-line">都在我們心中 化作最暖的光</div>
                 <div class="ink-line">這份真誠厚情 我們將永誌於心</div>
                 <div class="ink-line">願 每一位親友平安順心</div>
-                <div class="ink-line ink-last-line">家屬 <b>全體家眷</b> 叩謝</div>
+                <div class="ink-line" style="margin-top: 160px; color: var(--ink); font-size: 20px;">家屬 <b>全體家眷</b> 叩謝</div>
             </div>
         </div>
 
         <div class="contact-box">
-            <div style="text-align: center;">
-                <div style="font-size: 12px; color: var(--gold); letter-spacing: 2px; margin-bottom: 5px; font-weight: 700;">家屬代表</div>
-                <div style="font-size: 18px; font-weight: 600; color: var(--ink);">王瀚陽 先生</div>
-                <div class="contact-btns">
-                    <a href="tel:0931105657" class="btn-call" style="background: #666;">撥打電話</a>
-                </div>
-            </div>
+            <div class="info-label">家屬代表</div>
+            <div style="font-size: 18px; font-weight: 600; color: var(--ink);">王瀚陽 先生</div>
+            <div class="contact-btns"><a href="tel:0931105657" class="btn-call" style="background:#666;">撥打電話</a></div>
         </div>
 
         <div class="contact-box">
-            <div style="text-align: center;">
-                <div style="font-size: 12px; color: var(--gold); letter-spacing: 2px; margin-bottom: 5px; font-weight: 700;">禮儀服務</div>
-                <div style="font-size: 18px; font-weight: 600; color: var(--ink);">陳柏元 先生</div>
-                <div class="contact-btns">
-                    <a href="tel:0938179858" class="btn-call">撥打電話</a>
-                    <a href="https://line.me/ti/p/nZJmE8-b6X" class="btn-line">LINE 聯繫</a>
-                </div>
+            <div class="info-label">禮儀服務</div>
+            <div style="font-size: 18px; font-weight: 600; color: var(--ink);">陳柏元 先生</div>
+            <div class="contact-btns">
+                <a href="tel:0938179858" class="btn-call">撥打電話</a>
+                <a href="https://line.me/ti/p/nZJmE8-b6X" class="btn-line">LINE 聯繫</a>
             </div>
         </div>
 
-        <footer><div>祥安生命有限公司</div></footer>
+        <footer>祥安生命有限公司</footer>
     </main>
 </div>
 
@@ -266,7 +237,6 @@
 </div>
 
 <div id="lightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">×</span>
     <img id="lbi" onclick="event.stopPropagation()">
 </div>
 
@@ -274,22 +244,17 @@
     const lb = document.getElementById('lightbox');
     const lbi = document.getElementById('lbi');
 
-    // 禁用主頁面縮放
-    document.addEventListener('gesturestart', (e) => {
-        if (lb.style.display !== 'flex') e.preventDefault();
-    });
-
-    // 分享資訊內容
+    // 分享內容
     const mTitle = "☘️【追思奠禮 ‧ 王金生 先生】";
-    const mInfo = `安靈地點：板橋殯儀館牌位區［ 83 ］號\n奠禮日期：115年02月01日(六)\n奠禮會場：台北市第二殯儀館［ 至仁四廳 ］\n家奠禮：上午 07:50\n公奠禮：上午 08:30\n詳情參閱：https://24hour.xn--kpry57d/Wang-Jinsheng`;
+    const mInfo = "日期：115年02月01日(六)\n地點：台北市第二殯儀館［至仁四廳］\n家奠 07:50 / 公奠 08:30\n詳情：https://24hour.xn--kpry57d/Wang-Jinsheng";
 
-    // 滾動動畫
+    // 動畫觸發
     const obs = new IntersectionObserver(es => es.forEach(e => {
         if(e.isIntersecting) {
             e.target.classList.add('visible');
             if(e.target.id === 'thanksSec') {
                 e.target.querySelectorAll('.ink-line').forEach((l, i) => {
-                    l.style.animationDelay = (i * 1.2 + 0.3) + 's';
+                    l.style.animationDelay = (i * 1.2) + 's';
                     l.classList.add('ink-anim');
                 });
             }
@@ -297,37 +262,38 @@
     }), {threshold: 0.1});
     document.querySelectorAll('section, .calligraphy-area').forEach(s => obs.observe(s));
 
-    // 音樂
-    const bgm = document.getElementById('bgm');
-    const startB = () => { if(bgm.paused){ bgm.volume=0.3; bgm.play().catch(()=>{}); } };
-    ['click','touchstart'].forEach(ev => document.addEventListener(ev, startB, {once:true}));
+    // 音樂 (首次點擊啟動)
+    document.addEventListener('click', () => {
+        const bgm = document.getElementById('bgm');
+        if(bgm.paused) { bgm.volume=0.3; bgm.play().catch(()=>{}); }
+    }, {once: true});
 
-    // 燈箱控制
-    function zoom(s) { lbi.src = s; lb.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+    // 抽屜切換
+    function toggleD(btn, id) {
+        const content = document.getElementById(id);
+        const span = btn.querySelector('span');
+        const isOpen = content.style.display === 'block';
+        content.style.display = isOpen ? 'none' : 'block';
+        span.innerText = isOpen ? '+' : '-';
+        btn.style.background = isOpen ? '#fff' : 'rgba(180, 151, 122, 0.05)';
+    }
+
+    // 燈箱功能
+    function zoom(src) { lbi.src = src; lb.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
     function closeLightbox() { lb.style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-    // 花禮清單
-    function toggleF() { 
-        const g = document.getElementById('flowerG'); 
-        g.style.display = g.style.display === 'grid' ? 'none' : 'grid'; 
-    }
-    
-    // 功能函數
+    // 功能按鈕
     function copyText() {
-        const fullTxt = mTitle + "\n\n" + mInfo;
-        const t = document.createElement("textarea"); t.value = fullTxt; document.body.appendChild(t);
-        t.select(); document.execCommand('copy'); document.body.removeChild(t);
-        alert("奠禮資訊已複製至剪貼簿");
+        const t = document.createElement("textarea"); t.value = mTitle + "\n\n" + mInfo;
+        document.body.appendChild(t); t.select(); document.execCommand('copy');
+        document.body.removeChild(t); alert("資訊已複製");
     }
-
     function shareLine() {
-        const fullMsg = mTitle + "\n\n" + mInfo;
-        window.location.href = `https://line.me/R/msg/text/?${encodeURIComponent(fullMsg)}`;
+        window.location.href = `https://line.me/R/msg/text/?${encodeURIComponent(mTitle + "\n\n" + mInfo)}`;
     }
-
     function addCal() { 
-        const calUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('【追思】王金生先生 奠禮')}&dates=20260131T235000Z/20260201T030000Z&location=${encodeURIComponent('台北市第二殯儀館至仁四廳')}`;
-        window.open(calUrl); 
+        const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('【追思】王金生先生')}&dates=20260201T075000/20260201T100000&location=${encodeURIComponent('台北市第二殯儀館至仁四廳')}`;
+        window.open(url); 
     }
 </script>
 </body>
